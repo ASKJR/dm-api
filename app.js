@@ -2,11 +2,22 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const dotenv = require('dotenv');
 
 // helpers
 const AppError = require('./src/common/appError');
 const globalErrHandler = require('./src/common/errorController');
 const routes = require('./src/routes/routes');
+
+let path = '';
+if (process.env.NODE_ENV === 'dev') {
+  path = 'config.env';
+} else {
+  path = 'config.production.env';
+}
+dotenv.config({
+  path,
+});
 
 const app = express();
 
