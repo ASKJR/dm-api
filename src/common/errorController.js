@@ -4,11 +4,10 @@ module.exports = (err, req, res, next) => {
   err.statusCode = err.statusCode || 500;
   // eslint-disable-next-line no-param-reassign
   err.status = err.status || 'error';
-
+  //   stack: err.stack,
   res.status(err.statusCode).json({
     status: err.status,
     error: err,
     message: err.message,
-    stack: err.stack,
   });
 };
